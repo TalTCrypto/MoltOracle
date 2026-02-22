@@ -11,7 +11,16 @@ const crypto = require('crypto');
 const { getFullSnapshot, fetchFearGreed, fetchTVL, fetchStablecoins, fetchGas } = require('./sources');
 
 const app = express();
+app.disable('x-powered-by');
 app.use(express.json());
+
+// Security headers
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Content-Security-Policy', "default-src 'none'");
+  next();
+});
 
 const PORT = process.env.PORT || 3042;
 const RATE_LIMIT = parseInt(process.env.RATE_LIMIT || '30');
