@@ -178,7 +178,7 @@ app.get('/verify/:hash', (req, res) => {
   res.json({
     hash: req.params.hash,
     note: 'Verify this hash against MoltOracleAttestation contract on Base Sepolia',
-    contract: process.env.CONTRACT_ADDRESS || 'pending deployment',
+    contract: process.env.CONTRACT_ADDRESS || '0xF30C7624f5d759e3695738374Ff2D1618E92F12C',
     howToVerify: 'Call attestations(id).dataHash and compare with this hash'
   });
 });
